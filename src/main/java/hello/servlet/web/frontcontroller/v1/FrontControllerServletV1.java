@@ -29,7 +29,6 @@ public class FrontControllerServletV1 extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("프론트 컨트롤러 작동중!!!!");
-
         String requestURI = req.getRequestURI();
 
         ControllerV1 controller = controllerMap.get(requestURI);
