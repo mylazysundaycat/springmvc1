@@ -13,7 +13,7 @@ public class MemberRepositoryTest {
 
     @AfterEach
     void afterEach() {
-        //memberRepository.clearStore();
+        memberRepository.clearStore();
     }
 
     @Test
@@ -23,7 +23,8 @@ public class MemberRepositoryTest {
         //when
         Member savedMember = memberRepository.save(member);
         //then
-        Member findMember = memberRepository.findById(savedMember.getId());
+        Member findMember = memberRepository
+                .findById(savedMember.getId());
         assertThat(findMember).isEqualTo(savedMember);
     }
     @Test

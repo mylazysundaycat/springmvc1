@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+
+//HTTP 응답 데이터: JSON
 @WebServlet(name="responseJsonServlet",urlPatterns = "/response-json")
 public class ResponseJsonServlet extends HttpServlet {
 
@@ -24,7 +26,7 @@ public class ResponseJsonServlet extends HttpServlet {
         helloData.setUsername("kim");
         helloData.setAge(20);
 
-        String result = objectMapper.writeValueAsString(helloData);
+        String result = objectMapper.writeValueAsString(helloData); //객체를 JSON 문자로 변경할 수있음
         resp.getWriter().write(result);
     }
 }

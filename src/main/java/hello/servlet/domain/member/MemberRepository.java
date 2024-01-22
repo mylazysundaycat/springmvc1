@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//현재는 동시성 문제가 고려되어있지 않음
 public class MemberRepository {
     private static Map<Long, Member> store = new HashMap<>();
     private static long sequence = 0L;
@@ -14,9 +15,7 @@ public class MemberRepository {
     public static MemberRepository getInstance() {
         return instance;
     }
-    private MemberRepository() {
-
-    }
+    private MemberRepository() {}
 
     public Member save(Member member) {
         member.setId(++sequence);

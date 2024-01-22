@@ -1,15 +1,17 @@
 <%@ page import="hello.servlet.domain.member.MemberRepository" %>
 <%@ page import="hello.servlet.domain.member.Member" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
- MemberRepository memberRepository = MemberRepository.getInstance();
+<%
+ // request, response 그냥 사용 가능!! JSP도 서블릿으로 자동변환되기 때문이다.
+  MemberRepository memberRepository = MemberRepository.getInstance();
 
- System.out.println("save.jsp");
- String username = request.getParameter("username");
- int age = Integer.parseInt(request.getParameter("age"));
+  System.out.println("save.jsp");
+  String username = request.getParameter("username");
+  int age = Integer.parseInt(request.getParameter("age"));
 
- Member member = new Member(username, age);
- System.out.println("member = " + member);
- memberRepository.save(member);
+  Member member = new Member(username, age);
+  System.out.println("member = " + member);
+  memberRepository.save(member);
 %>
 <html>
 <head>
