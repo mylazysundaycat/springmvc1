@@ -14,21 +14,29 @@ import java.io.PrintWriter;
 public class ResponseHeaderServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setStatus(HttpServletResponse.SC_BAD_REQUEST); //http 코드, ctrl+B
+        //[status-line]
+        resp.setStatus(HttpServletResponse.SC_OK); //http 코드, ctrl+B
+        //기본 200(Ok) 오류 400(Bad)
 
-        resp.setHeader("Content-Type","text/plain");
+        //[response-headers]
+        resp.setHeader("Content-Type","text/plain;charset=utf-8");
         resp.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
         resp.setHeader("Pragma","no-cache");
         resp.setHeader("my-header","hello");
 
         PrintWriter writer = resp.getWriter();
-        writer.println("gooood");
+        writer.println("ok");
+        writer.println("안녕하세요");
 
-        //header의 편의 메서드
+        //[Header의 편의 메소드]
         //content(resp);
 
-        //cookie와 관련된 편의 메서드
+        //cookie와 관련된 편의 메소드
         cookie(resp);
+
+        //redirect 편의 메소드
+        redirect(resp);
+
     }
 
     private void content(HttpServletResponse response) {
@@ -43,6 +51,7 @@ public class ResponseHeaderServlet extends HttpServlet {
     private void cookie(HttpServletResponse response) {
         //Set-Cookie: myCookie=good; Max-Age=600;
         //response.setHeader("Set-Cookie", "myCookie=good; Max-Age=600");
+        //위 코드랑 아래 코드는 같다
         Cookie cookie = new Cookie("myCookie", "good");
         cookie.setMaxAge(600); //600초
         response.addCookie(cookie);
@@ -51,6 +60,7 @@ public class ResponseHeaderServlet extends HttpServlet {
     private void redirect(HttpServletResponse response) throws IOException {
         //Status Code 302
         //Location: /basic/hello-form.html
+
         //response.setStatus(HttpServletResponse.SC_FOUND); //302
         //response.setHeader("Location", "/basic/hello-form.html");
         response.sendRedirect("/basic/hello-form.html");
