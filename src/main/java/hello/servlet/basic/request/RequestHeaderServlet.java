@@ -1,4 +1,4 @@
-package hello.servlet.request;
+package hello.servlet.basic.request;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,7 +15,9 @@ import java.util.Enumeration;
 public class RequestHeaderServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //HTTP의 startLine을 받아오는 것
         //printStartLine(request);
+        //printHeaders(request);
         printHeaderUtils(request);
     }
 
@@ -47,10 +49,9 @@ public class RequestHeaderServlet extends HttpServlet {
         }
          */
 
-        request.getHeaderNames().asIterator()
+        request.getHeaderNames()
+                .asIterator()
                 .forEachRemaining(headerName-> System.out.println("headerName:"+headerName));
-
-
 
         System.out.println("--- Headers-end ---");
         System.out.println();

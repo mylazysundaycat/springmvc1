@@ -1,4 +1,4 @@
-package hello.servlet.request;
+package hello.servlet.basic.request;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,17 +19,16 @@ public class RequestParamServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("<전체 파라미터 조회>");
-
-        request.getParameterNames().asIterator()
+        request.getParameterNames()
+                .asIterator()
                 .forEachRemaining(paramName-> System.out.println(paramName+"="+request.getParameter(paramName)));
         /*
         paramName -> username
         request.getParameter(paramName) -> hello
          */
+
+
         System.out.println();
-
-
-
         System.out.println("<단일 파라미터 조회>");
         String username = request.getParameter("username");
         String age = request.getParameter("age");
@@ -38,12 +37,11 @@ public class RequestParamServlet extends HttpServlet {
         System.out.println();
 
 
-
         System.out.println("<이름이 같은 복수 파라미터 조회>");
         String[] usernames = request.getParameterValues("username");
         for (String s : usernames) {
             System.out.println("username = " + s);
         }
-
+        //request.getParmeter()는 GET, POST 방식 둘다 지원한다.
     }
 }
