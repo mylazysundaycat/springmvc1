@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
+//Controller
 @WebServlet(name="mvcMemberSaveServlet",urlPatterns = "/servlet-mvc/members/save")
 public class MvcMemberSaveServlet extends HttpServlet {
     private MemberRepository memberRepository = MemberRepository.getInstance();
@@ -26,6 +27,7 @@ public class MvcMemberSaveServlet extends HttpServlet {
 
         //Moder에 데이터를 보관해야 한다.
         req.setAttribute("member", member);
+
 
         String viewPath = "WEB-INF/views/save-result.jsp";
         RequestDispatcher dispatcher = req.getRequestDispatcher(viewPath);
